@@ -1,0 +1,66 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  cursor: none;
+}
+
+body {
+  overflow-x: hidden; 
+}
+
+section {
+  min-height: 100vh;
+  background: rgb(41, 42, 46);
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cursor {
+  position: absolute;
+  top: 0;
+  left: 0;
+  /* border: 1.5px solid #fff; */
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  /* adjust mouse centered in our div.cursor */
+  transform: translate(-50%, -50%);
+
+  /* The element is never the target of pointer events */
+  pointer-events: none;
+}
+
+.cursor::after, .cursor::before {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  border-radius: 50%;
+}
+
+.cursor::before {
+  background: #fff;
+  /* transform: translate(-50%, -50%) scale(3); */
+}
+
+.cursor.click::before {
+  animation: click .5s ease-in-out forwards;
+}
+
+@keyframes click {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(5);
+  }
+}
